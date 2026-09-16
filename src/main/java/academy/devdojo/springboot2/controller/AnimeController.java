@@ -25,19 +25,21 @@ public class AnimeController {
     private final DateUtil dateUtil;
     private final AnimeService animeService;
 
+    // http://localhost:8080/animes
+
     @GetMapping
     public ResponseEntity<List<Anime>> list(){
         log.info(dateUtil.FormatLocalDateTimeToDataBaseStyle(LocalDateTime.now()));
         return ResponseEntity.ok(animeService.listall());
     }
+    // http://localhost:8080/animes/id
     @GetMapping(path = "/{id}")
     public ResponseEntity<Anime> findById(@PathVariable Long id){
         return ResponseEntity.ok(animeService.findById(id));
     }
 
-    // quero adicionar um novo anime na lista
-
-    @PostMapping
+    // http://localhost:8080/animes/novoAnime
+    @PostMapping(path = "novoAnime")
         public ResponseEntity<Anime> save(@RequestBody Anime anime){
         return new ResponseEntity<>(animeService.save(anime), HttpStatus.CREATED);
     }

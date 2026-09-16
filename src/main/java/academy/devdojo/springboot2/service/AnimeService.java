@@ -31,8 +31,12 @@ public class AnimeService  {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Anime not Found"));
     }
 
+
+
     public Anime save(Anime anime) {
-        anime.setId(ThreadLocalRandom.current().nextLong(3,10000));
+
+        long idAleatorio = ThreadLocalRandom.current().nextLong(3, 100000);
+        anime.setId(idAleatorio);
         animes.add(anime);
         return anime;
     }
