@@ -27,18 +27,22 @@ public class AnimeController {
     private final DateUtil dateUtil;
     private final AnimeService animeService;
 
-    // http://localhost:8080/animes
+    //http://localhost:8080/animes
 
     @GetMapping
     public ResponseEntity<List<Anime>> list(){
         log.info(dateUtil.FormatLocalDateTimeToDataBaseStyle(LocalDateTime.now()));
         return ResponseEntity.ok(animeService.listall());
     }
-    // http://localhost:8080/animes/id
+    //http://localhost:8080/animes/id
     @GetMapping(path = "/{id}")
     public ResponseEntity<Anime> findById(@PathVariable Long id){
         return ResponseEntity.ok(animeService.findByIdOrThrowBadRequestException(id));
     }
+
+
+
+
 
     // http://localhost:8080/animes/novoAnime
 
@@ -47,6 +51,10 @@ public class AnimeController {
         public ResponseEntity<Anime> save(@RequestBody AnimePostRequestBody animePostRequestBody){
         return new ResponseEntity<>(animeService.save(animePostRequestBody), HttpStatus.CREATED);
     }
+
+
+
+
 
 
     @DeleteMapping(path = "/{id}")
